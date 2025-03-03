@@ -225,7 +225,7 @@ end
 
 ## Redirects
 
-Redirects can be added using `redirect`. If you have many redirects, you might consider using a Rack middleware.
+Redirects can be added using `redirect`. 
 
 ```ruby
 redirect "/old", to: "/new"
@@ -236,6 +236,20 @@ By default, redirects use a `301` status code. Use a different code via the `cod
 ```ruby
 redirect "/old", to: "/temporary-new", code: 302
 ```
+
+Redirects can be made to absolute URLs as well::
+
+```ruby
+redirect "/external", to: "http:/hanamirb.org"
+```
+
+Non-http protocols (for example for mobile deep-linking) are also supported thanks to the URI class:
+
+```ruby
+redirect "/custom", to: URI("xmpp://myapp.net")
+```
+
+If you have many redirects or if you want to apply custom rules, you might consider using a Rack middleware.
 
 ## Inspecting routes
 
